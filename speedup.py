@@ -27,7 +27,7 @@ def strtime_to_int(s):
     return int(result)
 
 def get_port():
-    r = requests.get('http://ispeed.ebit.cn/speedup2/isCanSpeedup.jhtml', headers=headers, params={'r': random.uniform(0,1)}, timeout=5)
+    r = requests.get('http://www.ebit.cn:7272/speedup2/isCanSpeedup.jhtml', headers=headers, params={'r': random.uniform(0,1)}, timeout=5)
     port = r.cookies['ip']
     ports = port.replace(':','%3A')
     return port
@@ -54,7 +54,7 @@ def start():
             cks = {
                 'ip': ip
             }
-            r = session.get('http://ispeed.ebit.cn/speedup2/speedup.jhtml', headers=headers, cookies=cks)
+            r = session.get('http://www.ebit.cn:7272/speedup2/speedup.jhtml', headers=headers, cookies=cks)
             logger.info(r.text)
             if r.json()['state'] == 0:
                 if '没有提速' in r.json()['message'] or '正在提速' in r.json()['message'] or '提速成功' in r.json()['message']:
